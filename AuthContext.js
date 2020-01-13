@@ -7,10 +7,12 @@ export const AuthContext = createContext();
 export const AuthProvider = ({isLoggedIn:isLoggedInProp, children}) => {
     const [isLoggedIn, setIsLoggedIn] = useState(isLoggedInProp);
     
-    const logUserIn = async() => {
+    const logUserIn = async token => {
+        console.log(token);
         try{
             //asyncstorage에서 로그인상태 체크
           await AsyncStorage.setItem("isLoggedIn", "true") //일반비동기처럼 바로 다음라인으로 넘어가지 않고, 결과값을 얻을때까지 기다린다
+          await AsyncStorage.setItem("jwt", token)
           setIsLoggedIn(true);
         }catch(e){
           console.log(e);

@@ -7,10 +7,12 @@ import AuthHome from '../screens/Auth/AuthHome';
 //화면 구성을 하는데 탭과 스택(스택 나비게이션으로 화면을 쌓는?다)이 있다 
 const AuthNavigation = createStackNavigator(
     {
-        AuthHome,
-        SignUp,
         Login,
-        Confirm
+        SignUp,
+        Confirm,
+        AuthHome
+       
+        
     },
     {
         headerMode:"none"
