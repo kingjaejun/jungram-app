@@ -1,5 +1,5 @@
 const options = {
-    uri:"https://7444979d.ngrok.io"
+    uri:"https://60c049e8.ngrok.io"
 }
 
 export default options

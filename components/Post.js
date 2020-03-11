@@ -4,11 +4,12 @@ import {Ionicons} from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 import Swiper from 'react-native-swiper';
 import {gql} from 'apollo-boost';
-import constants from '../screens/constants';
+import constants from '../constants';
 import {useMutation} from 'react-apollo-hooks';
 import {withNavigation} from 'react-navigation';
 import styled from 'styled-components';
 import styles from '../styles';
+import UserDetail from '../screens/UserDetail';
 
 export const TOGGLE_LIKE = gql`
     mutation toggleLike($postId: String!){
@@ -84,20 +85,13 @@ const Post = ({
     return (
         <Container>
             <Header>
-                <Touchable
-                onPress={()=>
-                    navigation.navigate("UserDetail",{username:user.username})
-                }
-                >
-                    <Image
-                    style={{height:40, width:40, borderRadius:20}}
-                    source={{uri:user.avatar}}
-                    />
+                <Touchable onPress={()=> navigation.navigate("UserDetail",{username:user.username})}>
+                  <Image
+                  style={{height:40, width:40, borderRadius:20}}
+                  source={{uri:user.avatar}}
+                  />
                 </Touchable>
-                <Touchable
-                    onPress={()=>
-                    navigation.navigate("UserDetail", {username:user.username})
-                }>
+                <Touchable onPress={()=> navigation.navigate("UserDetail", {username:user.username})}>
                     <HeaderUserContainer>
                         <Bold>{user.username}</Bold>
                         <Location>{location}</Location>
@@ -105,10 +99,10 @@ const Post = ({
                 </Touchable>
             </Header>
             <Swiper
-            paginationStyle={{position:"absolute",bottom:-25}}
-            dotStyle={{width:4, height:4}}
-            activeDotStyle={{width:4, height:4}}
-            style={{height:constants.height /2.5}}
+              paginationStyle={{position:"absolute",bottom:-25}}
+              dotStyle={{width:4, height:4}}
+              activeDotStyle={{width:4, height:4}}
+              style={{height:constants.height /2.5}}
             >
                 {files.map(file => (
                     <Image

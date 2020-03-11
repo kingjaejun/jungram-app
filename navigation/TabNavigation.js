@@ -1,8 +1,8 @@
 import {createBottomTabNavigator} from 'react-navigation-tabs';
-import Home from '../screens/Home';
-import Search from '../screens/Search';
-import Notification from '../screens/Notification';
-import Profile from '../screens/Profile';
+import Home from '../screens/Tabs/Home';
+import Search from '../screens/Tabs/Search';
+import Notification from '../screens/Tabs/Notification';
+import Profile from '../screens/Tabs/Profile';
 import {View} from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 import React from 'react';
@@ -10,21 +10,36 @@ import MessagesLink from '../components/MessagesLink';
 import NavIcon from '../components/NavIcon';
 import {Platform} from 'react-native';
 import { stackStyles } from './config';
-
+import Detail from '../screens/Detail';
+import styles from '../styles';
+import UserDetail from '../screens/UserDetail';
 
 const stackFactory = (initialRoute,customConfig)=> 
     createStackNavigator({
         initialRoute:{
             screen:initialRoute,
             navigationOptions:{
-                ...customConfig
+                ...customConfig    
+            }
+        },
+        Detail:{
+            screen:Detail,
+            navigationOptions:{
+                //뒤로가기 버튼 색깔
+                title:"Photo"
+            }
+        },
+        UserDetail:{
+            screen: UserDetail,
+            navigationOptions:{
+                title: "User"
             }
         }
-    },
-    {
+    },{
         defaultNavigationOptions:{
-            headerStyle:{...stackStyles},
-            headerBackTitle:null
+            headerBackTitle: null,
+            headerTintColor: styles.blackColor,
+            headerStyle:{...stackStyles}
         }
     }
     );
@@ -51,10 +66,10 @@ export default createBottomTabNavigator(
                     />
                 )
             }
-        }, 
+        },        
         Search:{
             screen:stackFactory(Search,{
-                title:"Search"
+                headerBackTitle : null
             }),
             navigationOptions:{
                 tabBarIcon:({focused}) =>(
@@ -108,14 +123,14 @@ export default createBottomTabNavigator(
                 tabBarIcon:({focused}) => (
                     <NavIcon
                         focused={focused}
-                        name={Platform.OS==="ios"?"ios-person":"md-person"}
-                         
+                        name={Platform.OS==="ios"?"ios-person":"md-person"}    
                     />
                 )
             }
         }
     },
     {
+    initialRouteName:"Profile",
     tabBarOptions:{
         showLabel:false,
         style:{

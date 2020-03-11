@@ -6,7 +6,7 @@ import AuthInput from '../../components/AuthInput';
 import useInput from '../../hooks/useInput';
 import { Alert } from 'react-native';
 import { useMutation } from 'react-apollo-hooks';
-import { LOG_IN , CREATE_ACCOUNT} from './AuthQueries';
+import { CREATE_ACCOUNT} from './AuthQueries';
 import * as Facebook from 'expo-facebook';
 import * as Google from 'expo-google-app-auth';
 const View = styled.View`

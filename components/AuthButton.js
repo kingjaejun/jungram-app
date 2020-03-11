@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import constants from '../screens/constants';
+import constants from '../constants';
 import PropTypes from "prop-types"
 import { ActivityIndicator } from 'react-native';
 
